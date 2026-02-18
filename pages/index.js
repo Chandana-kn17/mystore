@@ -1,38 +1,27 @@
-import { useEffect, useState } from "react";
-import { Header, Footer } from "@/components";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import styled from "styled-components";
 
-import { getHomeLayout } from "@/lib/repositories/homeRepository";
-import { renderLayout } from "@/utils/layoutMapper";
+const PageWrapper = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Main = styled.main`
+  flex: 1;
+`;
 
 export default function Home() {
-  const [page, setPage] = useState(null);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    async function fetchHome() {
-      try {
-        const res = await getHomeLayout();
-        setPage(res.data.data.page);
-      } catch (err) {
-        setError("Failed to load home page");
-      }
-    }
-
-    fetchHome();
-  }, []);
-
-  if (error) return <div>{error}</div>;
-  if (!page) return <div>Loading...</div>;
-
   return (
-    <>
+    <PageWrapper>
       <Header />
 
-      {page.layouts?.map((layout, index) =>
-        renderLayout(layout, index)
-      )}
+      <Main>
+        {/* Your page content / product sections go here */}
+      </Main>
 
       <Footer />
-    </>
+    </PageWrapper>
   );
 }
