@@ -9,13 +9,28 @@ export function renderLayout(layout, index) {
 
   switch (layout.name) {
     case "CategoryCollection":
-      return <CategoryCollection key={layout.id ?? index} />;
+      return (
+        <CategoryCollection
+          key={layout.id ?? index}
+          data={layout.value}
+        />
+      );
 
     case "BrandCollection":
-      return <BrandCollection key={layout.id ?? index} />;
+      return (
+        <BrandCollection
+          key={layout.id ?? index}
+          data={layout.value}
+        />
+      );
 
     case "ProductCollection":
-      return <ProductCollection key={layout.id ?? index} />;
+      return (
+        <ProductCollection
+          key={layout.id ?? index}
+          data={layout.value}
+        />
+      );
 
     default:
       return null;
