@@ -46,7 +46,7 @@ export default function Footer() {
           <a href="#">Our Branches</a>
           <a href="#">Catering Services</a>
           <a href="#">Special Offers</a>
-          <a href="#">FAQ's</a>
+          {/* <a href="#">FAQ's</a> */}
         </Column>
 
         {/* Column 3 */}

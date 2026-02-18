@@ -1,6 +1,9 @@
+import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import styled from "styled-components";
+import { getHomeLayout } from "@/lib/repositories/homeRepository";
+import { renderLayout } from "@/utils/layoutMapper";
 
 const PageWrapper = styled.div`
   min-height: 100vh;
@@ -13,12 +16,24 @@ const Main = styled.main`
 `;
 
 export default function Home() {
+  const [page, setPage] = useState(null);
+
+  useEffect(() => {
+    async function fetchHome() {
+      const res = await getHomeLayout();
+      setPage(res.data.data.page);
+    }
+    fetchHome();
+  }, []);
+
   return (
     <PageWrapper>
       <Header />
 
       <Main>
-        {/* Your page content / product sections go here */}
+        {page?.layouts?.map((layout, index) =>
+          renderLayout(layout, index)
+        )}
       </Main>
 
       <Footer />
