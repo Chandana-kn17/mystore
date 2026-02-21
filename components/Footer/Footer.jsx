@@ -3,25 +3,35 @@ import {
   FooterGrid,
   Brand,
   Column,
-  Contact,
   Socials,
   BottomBar,
 } from "./Footer.styles";
+import { Container } from "../../styles/Layout.styles";
 
-export default function Footer() {
+export default function Footer({ data }) {
+  if (!data) return null;
+
+  const {
+    navigation = [],
+    copyright,
+    privacy_policy,
+    terms_and_conditions,
+  } = data;
+
   return (
     <FooterWrapper>
       <FooterGrid>
-        {/* Brand */}
+        {/* BRAND COLUMN (Hardcoded logo only) */}
         <Brand>
           <img
             src="https://cielorestaurant.staging.zopping.com/favicon.ico"
             alt="Cielo Restaurant"
           />
-          <p>
-            Zopping is a no-code platform enabling rapid creation of customizable
-            online stores and mobile apps.
-          </p>
+
+          {/* Description from first navigation */}
+          {navigation[0]?.description && (
+            <p>{navigation[0].description}</p>
+          )}
 
           <Socials>
             <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" />
@@ -31,53 +41,35 @@ export default function Footer() {
           </Socials>
         </Brand>
 
-        {/* Column 1 */}
-        <Column>
-          <h4>Reservation Inquiry</h4>
-          <a href="#">Get In Touch</a>
-          <a href="#">Party Hall</a>
-          <a href="#">Join Our Newsletter</a>
-          <a href="#">Media Coverage</a>
-        </Column>
+        {/* ALL NAVIGATION COLUMNS */}
+        {navigation.map((section, index) => (
+          <Column key={index}>
+            <h4>{section.text}</h4>
 
-        {/* Column 2 */}
-        <Column>
-          <h4>Location & Hours</h4>
-          <a href="#">Our Branches</a>
-          <a href="#">Catering Services</a>
-          <a href="#">Special Offers</a>
-          {/* <a href="#">FAQ's</a> */}
-        </Column>
-
-        {/* Column 3 */}
-        <Column>
-          <h4>Join Us In Every Way</h4>
-          <a href="#">Cloud Kitchen</a>
-          <a href="#">Partnership</a>
-          <a href="#">Community</a>
-          <a href="#">Cooking Classes</a>
-        </Column>
-
-        {/* Column 4 */}
-        <Column>
-          <h4>Customer Support</h4>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms Of Service</a>
-          <a href="#">Connect With Us</a>
-          <a href="#">Feedback</a>
-        </Column>
-
-        {/* Contact */}
-        <Contact>
-          <h4>Contact Us</h4>
-          <p>abc123@gmail.com</p>
-          <p>+91 9876054321</p>
-        </Contact>
+            {section.items?.map((item, i) => (
+              <a
+                key={i}
+                href={item.url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {item.text}
+              </a>
+            ))}
+          </Column>
+        ))}
       </FooterGrid>
 
       <BottomBar>
-        <span>© Cielo Restaurant 2026. All rights reserved</span>
-        <span>Privacy Policy · Terms & Conditions</span>
+        <span>{copyright}</span>
+
+        <span>
+          <a href={privacy_policy}>Privacy Policy</a>
+          {" · "}
+          <a href={terms_and_conditions}>
+            Terms & Conditions
+          </a>
+        </span>
       </BottomBar>
     </FooterWrapper>
   );

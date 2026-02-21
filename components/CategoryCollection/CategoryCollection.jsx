@@ -8,16 +8,21 @@ import {
   Image,
   Name,
 } from "./CategoryCollection.styles";
+import { Container } from "../../styles/Layout.styles";
 
-export default function CategoryCollection({ data }) {
-  if (!data) return null;
 
-  const { title, collection } = data;
+export default function CategoryCollection({ data,config }) {
+  if (!data&& !config) return null;
+
+  const { title,subtitle } = config;
+  const {collection} = data;
 
   return (
+    
     <Section>
+      <Container>
       {title && <Title>{title}</Title>}
-      <Subtitle>Browse All Sections In One Place.</Subtitle>
+      <Subtitle>{subtitle}</Subtitle>
 
       <Grid>
         {collection.map(({ category }) => (
@@ -29,6 +34,8 @@ export default function CategoryCollection({ data }) {
           </Item>
         ))}
       </Grid>
+      </Container>
     </Section>
+    
   );
 }

@@ -6,44 +6,52 @@ import {
   LocationTitle,
   LocationSub,
   Nav,
+  LeftSection,
   NavItem,
   Spacer,
   Icons,
   Icon,
 } from "./Header.styles";
 
+import SearchIcon from "@/lib/icons/SearchIcon";
+import LockIcon from "@/lib/icons/LockIcon";
+import UserIcon from "@/lib/icons/UserIcon";
+import BellIcon from "@/lib/icons/BellIcon";
+
 export default function Header() {
   return (
     <HeaderWrapper>
-      <HeaderInner>
-        {/* Logo */}
-        <Logo src="https://cielorestaurant.staging.zopping.com/favicon.ico" />
+  <HeaderInner>
 
-        {/* Location */}
-        <Location>
-          <LocationTitle>Delivery To</LocationTitle>
-          <LocationSub>Select Address ▼</LocationSub>
-        </Location>
+    {/* LEFT SECTION */}
+    <LeftSection>
+      <Logo src="https://cielorestaurant.staging.zopping.com/favicon.ico" />
 
-        {/* Navigation */}
-        <Nav>
-          <NavItem>Burgers</NavItem>
-          <NavItem>
-            Starters <span>▼</span>
-          </NavItem>
-          <NavItem>Beverages</NavItem>
-          <NavItem>French Fries</NavItem>
-        </Nav>
+      <Location>
+        <LocationTitle>Delivery To</LocationTitle>
+        <LocationSub>Select Address ▼</LocationSub>
+      </Location>
+    </LeftSection>
 
-        <Spacer />
+    {/* CENTER NAV */}
+    <Nav>
+      <NavItem>Home</NavItem>
+      <NavItem>Category</NavItem>
+      <NavItem>AllProduct</NavItem>
+      <NavItem>About Us</NavItem>
+      <NavItem>Blog</NavItem>
+    </Nav>
 
-        {/* Right Icons */}
-        <Icons>
-          <Icon>🔍</Icon>
-          <Icon>🛒</Icon>
-          <Icon>👤</Icon>
-        </Icons>
-      </HeaderInner>
-    </HeaderWrapper>
+    {/* RIGHT ICONS */}
+    <Icons>
+      <Icon><SearchIcon width={27} height={27} fill="#1a1a1a" /></Icon>
+      <Icon><BellIcon width={27} height={27} fill="#1a1a1a" /></Icon>
+      <Icon><LockIcon width={27} height={27} fill="#1a1a1a" /></Icon>
+      <Icon><UserIcon width={27} height={27} fill="#1a1a1a" /></Icon>
+    </Icons>
+
+  </HeaderInner>
+</HeaderWrapper>
+
   );
 }

@@ -1,58 +1,66 @@
 import styled from "styled-components";
 
 export const FooterWrapper = styled.footer`
-  background: #f7cf57;
-  padding: 48px 64px 24px;
-  border-radius: 32px 32px 0 0;
+  background: #f4c64e;
+  padding: 60px 80px 30px;
+  border-radius: 40px 40px 0 0;
+
+  @media (max-width: 1024px) {
+    padding: 50px 40px 25px;
+  }
 
   @media (max-width: 768px) {
-    padding: 32px 20px 20px;
+    padding: 40px 20px 20px;
   }
 `;
 
-
 export const FooterGrid = styled.div`
   display: grid;
-  grid-template-columns: 2fr repeat(4, 1fr) 1.5fr;
-  gap: 40px;
+  grid-template-columns: 2fr repeat(4, 1fr);
+  gap: 60px;
 
   @media (max-width: 1024px) {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
   }
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 30px;
   }
 `;
 
-
 export const Brand = styled.div`
   img {
-    width: 80px;
-    margin-bottom: 16px;
+    width: 90px;
+    margin-bottom: 20px;
   }
 
   p {
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.6;
-    max-width: 220px;
+    max-width: 280px;
+    color: #1a1a1a;
   }
 `;
 
 export const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
   h4 {
     font-size: 16px;
-    margin-bottom: 16px;
     font-weight: 600;
+    margin-bottom: 12px;
+    color: #1a1a1a;
   }
 
   a {
-    display: block;
-    margin-bottom: 10px;
     font-size: 14px;
-    color: #111;
+    color: #1a1a1a;
     text-decoration: none;
+    transition: 0.2s ease;
 
     &:hover {
       text-decoration: underline;
@@ -60,31 +68,36 @@ export const Column = styled.div`
   }
 `;
 
-export const Contact = styled.div`
-  font-size: 14px;
-
-  p {
-    margin-bottom: 10px;
-  }
-`;
-
 export const Socials = styled.div`
   display: flex;
-  gap: 16px;
-  margin-top: 16px;
+  gap: 18px;
+  margin-top: 20px;
 
   img {
-    width: 20px;
+    width: 18px;
     cursor: pointer;
   }
 `;
 
 export const BottomBar = styled.div`
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+
   display: flex;
   justify-content: space-between;
-  margin-top: 40px;
-  font-size: 13px;
-  opacity: 0.8;
+  align-items: center;
+  font-size: 14px;
+  color: #1a1a1a;
+
+  a {
+    color: #1a1a1a;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -92,4 +105,3 @@ export const BottomBar = styled.div`
     text-align: center;
   }
 `;
-

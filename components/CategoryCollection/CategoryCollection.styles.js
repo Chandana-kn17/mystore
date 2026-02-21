@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Section = styled.section`
-  padding: 48px 24px;
+  padding: 40px 0px;
 `;
 
 export const Title = styled.h2`
