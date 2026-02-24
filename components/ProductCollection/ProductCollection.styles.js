@@ -2,39 +2,64 @@ import styled from "styled-components";
 
 export const Section = styled.section`
   padding: 40px 0;
+
+  @media (max-width: 600px) {
+    padding: 24px 16px;
+  }
 `;
 
 export const HeaderWrapper = styled.div`
   margin-bottom: 30px;
+
+  @media (max-width: 600px) {
+    margin-bottom: 20px;
+  }
 `;
 
 export const SectionTitle = styled.h2`
   font-size: 28px;
   font-weight: 600;
   margin-bottom: 6px;
+
+  @media (max-width: 600px) {
+    font-size: 22px;
+  }
 `;
 
 export const SectionSubtitle = styled.p`
   color: #666;
   font-size: 14px;
+
+  @media (max-width: 600px) {
+    font-size: 13px;
+  }
 `;
 
 export const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(4, 280px);
   gap: 30px;
+  justify-content: space-between;
 
-  @media (max-width: 1024px) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(3, 280px);
+    justify-content: center;
+  }
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 280px);
   }
 
   @media (max-width: 600px) {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr;   
+    justify-content: center;
+    gap: 20px;
   }
 `;
 
 export const ScrollerWrapper = styled.div`
   position: relative;
+  overflow: hidden;
 `;
 
 export const Scroller = styled.div`
@@ -44,14 +69,25 @@ export const Scroller = styled.div`
   scroll-behavior: smooth;
   padding-bottom: 10px;
 
+  scroll-snap-type: x mandatory;
+
   &::-webkit-scrollbar {
     display: none;
+  }
+
+  @media (max-width: 600px) {
+    gap: 0;
   }
 `;
 
 export const ScrollerItem = styled.div`
-  width: 280px;     
+  width: 280px;
   flex-shrink: 0;
+  scroll-snap-align: start;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 `;
 
 const ScrollButtonBase = styled.button`
@@ -67,6 +103,7 @@ const ScrollButtonBase = styled.button`
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   font-size: 22px;
   z-index: 10;
+
 
   &:hover {
     background: #f5f5f5;
@@ -84,21 +121,28 @@ export const RightButton = styled(ScrollButtonBase)`
 export const Card = styled.div`
   background: #fff;
   border-radius: 14px;
-  padding: 36px;
-
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  width: 100%;      
-  min-width: 0;     
+  width: 300px;   
+  
+   @media (max-width: 600px) {
+    width: 100%;     
+   }
 `;
 
 export const ImageWrapper = styled.div`
   position: relative;
-  width: 130%;
+  width: 100%;     
   height: 230px;
   border-radius: 12px;
   overflow: hidden;
   background: #f5f5f5;
+
+  @media (max-width: 600px) {
+    height: 260px;
+    
+  }
 `;
 
 export const Image = styled.img`
@@ -123,8 +167,7 @@ export const ProductName = styled.h3`
   font-size: 16px;
   font-weight: 600;
   margin: 14px 0 8px;
-
-  width: 100%;          
+  width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
