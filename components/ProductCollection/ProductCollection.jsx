@@ -38,14 +38,14 @@ export default function ProductCollection({ data, config }) {
 
   const scrollLeft = () => {
     scrollRef.current?.scrollBy({
-      left: -350,
+      left: -300,
       behavior: "smooth",
     });
   };
 
   const scrollRight = () => {
     scrollRef.current?.scrollBy({
-      left: 350,
+      left: 300,
       behavior: "smooth",
     });
   };
@@ -53,9 +53,9 @@ export default function ProductCollection({ data, config }) {
   const getPricing = (product) => {
     let pricing;
 
-    if (product.variants && product.variants.length > 0) {
+    if (product.variants?.length) {
       pricing = product.variants[0]?.storeSpecificData?.[0];
-    } else if (product.storeSpecificData?.length > 0) {
+    } else if (product.storeSpecificData?.length) {
       pricing = product.storeSpecificData[0];
     }
 
@@ -85,22 +85,22 @@ export default function ProductCollection({ data, config }) {
         : 0;
 
     return (
-      <Card>
+      <Card key={product.id}>
         <ImageWrapper>
           {discountPercent > 0 && (
             <DiscountBadge>
               {discountPercent}% OFF
             </DiscountBadge>
           )}
-          {image && (
-            <Image src={image} alt={product.name} />
-          )}
+          {image && <Image src={image} alt={product.name} />}
         </ImageWrapper>
 
-        <ProductName>{product.name}</ProductName>
+        <ProductName title={product.name}>
+          {product.name}
+        </ProductName>
 
         <VariantRow>
-          {product.variants && product.variants.length > 0 ? (
+          {product.variants?.length ? (
             product.variants.map((variant) => (
               <Variant key={variant.id}>
                 {variant.name}
@@ -135,9 +135,7 @@ export default function ProductCollection({ data, config }) {
 
         {layoutType === "SCROLLER" ? (
           <ScrollerWrapper>
-            <LeftButton onClick={scrollLeft}>
-              ‹
-            </LeftButton>
+            <LeftButton onClick={scrollLeft}>‹</LeftButton>
 
             <Scroller ref={scrollRef}>
               {products.map((product) => (
@@ -147,9 +145,7 @@ export default function ProductCollection({ data, config }) {
               ))}
             </Scroller>
 
-            <RightButton onClick={scrollRight}>
-              ›
-            </RightButton>
+            <RightButton onClick={scrollRight}>›</RightButton>
           </ScrollerWrapper>
         ) : (
           <Grid>

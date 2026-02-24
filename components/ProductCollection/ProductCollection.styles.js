@@ -21,11 +21,11 @@ export const SectionSubtitle = styled.p`
 
 export const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 30px;
 
   @media (max-width: 1024px) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   @media (max-width: 600px) {
@@ -50,7 +50,7 @@ export const Scroller = styled.div`
 `;
 
 export const ScrollerItem = styled.div`
-  min-width: 280px;
+  width: 280px;     
   flex-shrink: 0;
 `;
 
@@ -84,19 +84,18 @@ export const RightButton = styled(ScrollButtonBase)`
 export const Card = styled.div`
   background: #fff;
   border-radius: 14px;
-  padding: 14px;
-  transition: 0.3s ease;
-  cursor: pointer;
+  padding: 36px;
 
-  &:hover {
-    transform: translateY(-4px);
-  }
+  display: flex;
+  flex-direction: column;
+  width: 100%;      
+  min-width: 0;     
 `;
 
 export const ImageWrapper = styled.div`
   position: relative;
-  width: 100%;
-  height: 220px;
+  width: 130%;
+  height: 230px;
   border-radius: 12px;
   overflow: hidden;
   background: #f5f5f5;
@@ -122,8 +121,13 @@ export const DiscountBadge = styled.div`
 
 export const ProductName = styled.h3`
   font-size: 16px;
-  margin: 14px 0 8px;
   font-weight: 600;
+  margin: 14px 0 8px;
+
+  width: 100%;          
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 export const VariantRow = styled.div`

@@ -16,22 +16,20 @@ export const HeaderInner = styled.div`
   padding: 0 20px;         
 `;
 
-/* LEFT SECTION (Logo + Location) */
 export const LeftSection = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
 `;
 
-/* LOGO */
+
 export const Logo = styled.img`
-  width: 44px;
-  height: 44px;
+  width: 55px;
+  height: 55px;
   border-radius: 10px;
   object-fit: cover;
 `;
 
-/* LOCATION */
 export const Location = styled.div`
   display: flex;
   flex-direction: column;
@@ -48,7 +46,6 @@ export const LocationSub = styled.span`
   font-size: 13px;
 `;
 
-/* NAVIGATION (CENTER) */
 export const Nav = styled.nav`
   display: flex;
   align-items: center;     
@@ -67,7 +64,6 @@ export const NavItem = styled.div`
   }
 `;
 
-/* RIGHT ICONS */
 export const Icons = styled.div`
   display: flex;
   align-items: center;      

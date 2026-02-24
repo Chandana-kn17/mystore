@@ -8,8 +8,13 @@ import {
 } from "./Footer.styles";
 import { Container } from "../../styles/Layout.styles";
 
-export default function Footer({ data }) {
-  if (!data) return null;
+import FacebookIcon from "@/lib/icons/FacebookIcon";
+import InstagramIcon from "@/lib/icons/InstagramIcon";
+import TwitterIcon from "@/lib/icons/TwitterIcon";
+import YoutubeIcon from "@/lib/icons/YoutubeIcon";
+
+export default function Footer({ data, organization }) {
+  if (!data || !organization) return null;
 
   const {
     navigation = [],
@@ -18,59 +23,105 @@ export default function Footer({ data }) {
     terms_and_conditions,
   } = data;
 
+  const logo = organization?.logo;
+  const orgName = organization?.name;
+  const social = organization?.config?.social;
+
   return (
     <FooterWrapper>
-      <FooterGrid>
-        {/* BRAND COLUMN (Hardcoded logo only) */}
-        <Brand>
-          <img
-            src="https://cielorestaurant.staging.zopping.com/favicon.ico"
-            alt="Cielo Restaurant"
-          />
+      <Container>
+        <FooterGrid>
 
-          {/* Description from first navigation */}
-          {navigation[0]?.description && (
-            <p>{navigation[0].description}</p>
-          )}
+          {/* BRAND COLUMN */}
+          <Brand>
+            {logo && <img src={logo} alt={orgName} />}
 
-          <Socials>
-            <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" />
-            <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" />
-            <img src="https://cdn-icons-png.flaticon.com/512/733/733614.png" />
-            <img src="https://cdn-icons-png.flaticon.com/512/733/733646.png" />
-          </Socials>
-        </Brand>
+            {navigation[0]?.description && (
+              <p>{navigation[0].description}</p>
+            )}
 
-        {/* ALL NAVIGATION COLUMNS */}
-        {navigation.map((section, index) => (
-          <Column key={index}>
-            <h4>{section.text}</h4>
+            <Socials>
+              {social?.facebookHandle && (
+                <a
+                  href={`https://facebook.com/${social.facebookHandle}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Facebook"
+                >
+                  <FacebookIcon />
+                </a>
+              )}
 
-            {section.items?.map((item, i) => (
-              <a
-                key={i}
-                href={item.url}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {item.text}
+              {social?.instagramHandle && (
+                <a
+                  href={`https://instagram.com/${social.instagramHandle}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Instagram"
+                >
+                  <InstagramIcon />
+                </a>
+              )}
+
+              {social?.twitterHandle && (
+                <a
+                  href={`https://twitter.com/${social.twitterHandle}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Twitter"
+                >
+                  <TwitterIcon />
+                </a>
+              )}
+
+              {social?.youtubeHandle && (
+                <a
+                  href={`https://youtube.com/${social.youtubeHandle}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="YouTube"
+                >
+                  <YoutubeIcon />
+                </a>
+              )}
+            </Socials>
+          </Brand>
+
+          {/* NAVIGATION COLUMNS */}
+          {navigation.map((section, index) => (
+            <Column key={index}>
+              <h4>{section.text}</h4>
+
+              {section.items?.map((item, i) => (
+                <a
+                  key={i}
+                  href={item.url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {item.text}
+                </a>
+              ))}
+            </Column>
+          ))}
+        </FooterGrid>
+
+        <BottomBar>
+          <span>{copyright}</span>
+
+          <span>
+            {privacy_policy && (
+              <a href={privacy_policy}>Privacy Policy</a>
+            )}
+            {" · "}
+            {terms_and_conditions && (
+              <a href={terms_and_conditions}>
+                Terms & Conditions
               </a>
-            ))}
-          </Column>
-        ))}
-      </FooterGrid>
-
-      <BottomBar>
-        <span>{copyright}</span>
-
-        <span>
-          <a href={privacy_policy}>Privacy Policy</a>
-          {" · "}
-          <a href={terms_and_conditions}>
-            Terms & Conditions
-          </a>
-        </span>
-      </BottomBar>
+            )}
+          </span>
+        </BottomBar>
+      </Container>
     </FooterWrapper>
   );
 }

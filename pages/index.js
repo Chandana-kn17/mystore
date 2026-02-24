@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import styled from "styled-components";
+
 import { getHomeLayout } from "@/lib/repositories/homeRepository";
 import { getNavigation } from "@/lib/repositories/navigationRepository";
+import { getOrganization } from "@/lib/repositories/organizationRepository";
+
 import { renderLayout } from "@/utils/layoutMapper";
 
 const PageWrapper = styled.div`
@@ -19,60 +22,46 @@ const Main = styled.main`
 export default function Home() {
   const [page, setPage] = useState(null);
   const [footer, setFooter] = useState(null);
+  const [organization, setOrganization] = useState(null);
 
- useEffect(() => {
-  async function fetchData() {
-    const homeRes = await getHomeLayout();
-    const navRes = await getNavigation();
+  useEffect(() => {
+    async function fetchData() {
+      const homeRes = await getHomeLayout();
+      const navRes = await getNavigation();
+      const orgRes = await getOrganization(); 
 
-    // Extract page
-    const pageData =
-      homeRes?.data?.data?.page ??
-      homeRes?.data?.page ??
-      homeRes?.page;
+      const pageData =
+        homeRes?.data?.data?.page ??
+        homeRes?.data?.page ??
+        homeRes?.page;
 
-    // Extract footer from navigation API
-    const navigationData =
-      navRes?.data?.data ??
-      navRes?.data;
+      const navigationData =
+        navRes?.data?.data ??
+        navRes?.data;
 
-    setPage(pageData);
-    setFooter(navigationData?.footer);
-  }
+      setPage(pageData);
+      setFooter(navigationData?.footer);
+      setOrganization(orgRes); 
+    }
 
-  fetchData();
-}, []);
+    fetchData();
+  }, []);
 
-
-  if (!page) return null;
+  if (!page || !organization) return null;
 
   const layouts = page.layouts || [];
 
-
-  const categoryLayouts = layouts.filter(
-    (l) => l.name === "CategoryCollection" && l.status !== "DISABLED"
-  );
-
-  const brandLayouts = layouts.filter(
-    (l) => l.name === "BrandCollection" && l.status !== "DISABLED"
-  );
-
-  const productLayouts = layouts.filter(
-    (l) => l.name === "ProductCollection" && l.status !== "DISABLED"
-  );
-
   return (
     <PageWrapper>
-      <Header />
+      <Header organization={organization} />
 
       <Main>
-       {layouts
-       .filter((layout) => layout.status !== "DISABLED")
-       .map(renderLayout)} 
+        {layouts
+          .filter((layout) => layout.status !== "DISABLED")
+          .map(renderLayout)}
       </Main>
 
-
-      <Footer data={footer} />
+      <Footer data={footer} organization={organization} />
     </PageWrapper>
   );
 }
