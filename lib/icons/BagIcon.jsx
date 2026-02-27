@@ -1,6 +1,6 @@
 import React from "react";
 
-const LockIcon = ({ width = 28, height = 28, fill = "white", ...props }) => {
+const BagIcon = ({ width = 28, height = 28, fill = "white", ...props }) => {
   return (
     <svg
       width={width}
@@ -20,4 +20,4 @@ const LockIcon = ({ width = 28, height = 28, fill = "white", ...props }) => {
   );
 };
 
-export default LockIcon;
+export default BagIcon;

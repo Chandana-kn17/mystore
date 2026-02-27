@@ -8,6 +8,9 @@ import { getNavigation } from "@/lib/repositories/navigationRepository";
 import { getOrganization } from "@/lib/repositories/organizationRepository";
 
 import { renderLayout } from "@/utils/layoutMapper";
+import CartDrawer from "@/components/CartDrawer/CartDrawer";
+
+
 
 const PageWrapper = styled.div`
   min-height: 100vh;
@@ -62,6 +65,7 @@ export default function Home() {
       </Main>
 
       <Footer data={footer} organization={organization} />
+      <CartDrawer/>
     </PageWrapper>
   );
 }

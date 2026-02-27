@@ -109,3 +109,27 @@ export const Icon = styled.span`
   justify-content: center;
   cursor: pointer;
 `;
+export const BagIconWrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+`;
+
+export const CartBadge = styled.span`
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: #e53935;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 12px;
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  font-weight: 600;
+`;

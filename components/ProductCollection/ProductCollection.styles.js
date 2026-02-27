@@ -4,7 +4,7 @@ export const Section = styled.section`
   padding: 40px 0;
 
   @media (max-width: 600px) {
-    padding: 24px 16px;
+    padding: 24px 0; 
   }
 `;
 
@@ -35,25 +35,24 @@ export const SectionSubtitle = styled.p`
   }
 `;
 
+
 export const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 280px);
   gap: 30px;
-  justify-content: space-between;
+  justify-content: center;
+  grid-template-columns: repeat(4, 300px);
 
-  @media (max-width: 900px) {
-    grid-template-columns: repeat(3, 280px);
-    justify-content: center;
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(3, 300px);
   }
 
   @media (max-width: 900px) {
-    grid-template-columns: repeat(2, 280px);
+    grid-template-columns: repeat(2, 300px);
   }
 
   @media (max-width: 600px) {
-    grid-template-columns: 1fr;   
-    justify-content: center;
-    gap: 20px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
   }
 `;
 
@@ -64,31 +63,25 @@ export const ScrollerWrapper = styled.div`
 
 export const Scroller = styled.div`
   display: flex;
-  gap: 30px;
+  gap: 16px;
   overflow-x: auto;
-  scroll-behavior: smooth;
-  padding-bottom: 10px;
-
   scroll-snap-type: x mandatory;
 
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
   @media (max-width: 600px) {
-    gap: 0;
+    gap: 16px;
   }
 `;
 
 export const ScrollerItem = styled.div`
-  width: 280px;
-  flex-shrink: 0;
+  flex: 0 0 300px;
   scroll-snap-align: start;
+  min-width: 0;
 
   @media (max-width: 600px) {
-    width: 100%;
+    flex: 0 0 calc(50% - 8px); 
   }
 `;
+
 
 const ScrollButtonBase = styled.button`
   position: absolute;
@@ -103,7 +96,6 @@ const ScrollButtonBase = styled.button`
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   font-size: 22px;
   z-index: 10;
-
 
   &:hover {
     background: #f5f5f5;
@@ -124,24 +116,20 @@ export const Card = styled.div`
   padding: 16px;
   display: flex;
   flex-direction: column;
-  width: 300px;   
-  
-   @media (max-width: 600px) {
-    width: 100%;     
-   }
+  width: 100%;
+  min-width: 0;      
 `;
 
 export const ImageWrapper = styled.div`
   position: relative;
-  width: 100%;     
+  width: 100%;
   height: 230px;
   border-radius: 12px;
   overflow: hidden;
   background: #f5f5f5;
 
   @media (max-width: 600px) {
-    height: 260px;
-    
+    height: 200px;
   }
 `;
 
@@ -167,12 +155,14 @@ export const ProductName = styled.h3`
   font-size: 16px;
   font-weight: 600;
   margin: 14px 0 8px;
-  width: 100%;
+
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-`;
 
+  min-width: 0;   
+  width: 100%;
+`;
 export const VariantRow = styled.div`
   display: flex;
   gap: 8px;
@@ -186,6 +176,11 @@ export const Variant = styled.span`
   font-size: 12px;
   padding: 4px 10px;
   border-radius: 20px;
+`;
+
+export const ActiveVariant = styled(Variant)`
+  background: #1e7e5f;
+  color: #fff;
 `;
 
 export const PriceRow = styled.div`
@@ -206,6 +201,8 @@ export const Strike = styled.span`
   font-size: 14px;
 `;
 
+
+
 export const Button = styled.button`
   width: 100%;
   padding: 10px;
@@ -218,4 +215,27 @@ export const Button = styled.button`
   &:hover {
     opacity: 0.9;
   }
+`;
+
+export const QuantityWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border: 1.5px solid #e2b93b;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-weight: 600;
+`;
+
+export const QtyButton = styled.span`
+  cursor: pointer;
+  font-size: 18px;
+  color: #e2b93b;
+  user-select: none;
+`;
+
+export const QtyValue = styled.span`
+  font-size: 16px;
+  color: #e2b93b;
 `;
