@@ -13,6 +13,7 @@ export function renderLayout(layout, index) {
         <CategoryCollection
           key={layout.id ?? index}
           data={layout.value}
+          config={layout.data}
         />
       );
 
@@ -21,6 +22,7 @@ export function renderLayout(layout, index) {
         <BrandCollection
           key={layout.id ?? index}
           data={layout.value}
+          config={layout.data}
         />
       );
 
@@ -29,6 +31,7 @@ export function renderLayout(layout, index) {
         <ProductCollection
           key={layout.id ?? index}
           data={layout.value}
+          config={layout.data}
         />
       );
 
