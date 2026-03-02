@@ -19,6 +19,7 @@ const PageWrapper = styled.div`
 `;
 
 const Main = styled.main`
+  padding-top: 80px;
   flex: 1;
 `;
 

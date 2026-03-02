@@ -4,6 +4,13 @@ export const HeaderWrapper = styled.header`
   width: 100%;
   background: #fff;
   border-bottom: 1px solid #eee;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 `;
 
 export const HeaderInner = styled.div`

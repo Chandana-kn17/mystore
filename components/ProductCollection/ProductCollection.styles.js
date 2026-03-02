@@ -52,7 +52,7 @@ export const Grid = styled.div`
 
   @media (max-width: 600px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
+    gap: 10px;
   }
 `;
 
@@ -67,6 +67,10 @@ export const Scroller = styled.div`
   overflow-x: auto;
   scroll-snap-type: x mandatory;
 
+  &::-webkit-scrollbar{
+    display: none;
+  }
+  
   @media (max-width: 600px) {
     gap: 16px;
   }

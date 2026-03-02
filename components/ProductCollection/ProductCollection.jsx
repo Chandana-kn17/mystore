@@ -1,6 +1,5 @@
-"use client";
-
 import { useRef, useState } from "react";
+import Link from "next/link";
 import {
   Section,
   HeaderWrapper,
@@ -75,18 +74,18 @@ function ProductCard({ product }) {
     setSelectedVariant(variant);
   };
 
-const handleAdd = () => {
-  addItem({
-    productId: product.id,
-    variantId: variantId,
-    name: displayName,
-    variantName: selectedVariant?.name || "Regular",
-    price: finalPrice,
-    mrp: mrp,
-    discount: discount,
-    image: image,
-  });
-};
+  const handleAdd = () => {
+    addItem({
+      productId: product.id,
+      variantId: variantId,
+      name: displayName,
+      variantName: selectedVariant?.name || "Regular",
+      price: finalPrice,
+      mrp: mrp,
+      discount: discount,
+      image: image,
+    });
+  };
 
   const handleDecrease = () => {
     decreaseItem(product.id, variantId);
@@ -94,17 +93,30 @@ const handleAdd = () => {
 
   return (
     <Card>
-      <ImageWrapper>
-        {discountPercent > 0 && (
-          <DiscountBadge>{discountPercent}% OFF</DiscountBadge>
-        )}
-        {image && <Image src={image} alt={displayName} />}
-      </ImageWrapper>
+      
+      <Link
+        href={`/product/${product.slug}`}
+        style={{ textDecoration: "none", color: "inherit" }}
+      >
+        <ImageWrapper>
+          {discountPercent > 0 && (
+            <DiscountBadge>{discountPercent}% OFF</DiscountBadge>
+          )}
+          {image && <Image src={image} alt={displayName} />}
+        </ImageWrapper>
+      </Link>
 
-      <ProductName title={displayName}>
-        {displayName}
-      </ProductName>
+     
+      <Link
+        href={`/product/${product.slug}`}
+        style={{ textDecoration: "none", color: "inherit" }}
+      >
+        <ProductName title={displayName}>
+          {displayName}
+        </ProductName>
+      </Link>
 
+      {/* VARIANTS */}
       <VariantRow>
         {variants.length ? (
           variants.map((variant) =>
@@ -129,11 +141,13 @@ const handleAdd = () => {
         )}
       </VariantRow>
 
+      {/* PRICE */}
       <PriceRow>
         <Price>₹{finalPrice}</Price>
         {discount > 0 && <Strike>₹{mrp}</Strike>}
       </PriceRow>
 
+      {/* ADD TO CART */}
       {quantity === 0 ? (
         <Button onClick={handleAdd}>
           Add to cart
